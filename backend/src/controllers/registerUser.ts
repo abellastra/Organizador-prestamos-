@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 
-import { db } from "../db/db";
+import { db } from "../db/db.js";
 
 export const registerUser = async (
   req: Request,
@@ -10,27 +10,32 @@ export const registerUser = async (
   console.log(req.body);
 
   if (!username || !password) {
-    return res
+     res
       .status(400)
       .json({ error: "username and password are required" });
+      return;
   }
 
   try {
+    const users= await db.query("SELECT * FROM users");
     const [existingUser] = await db.query(
       "SELECT * FROM users WHERE username=?",
       [username]
     );
     if ((existingUser as any[]).length > 0) {
-      return res.status(409).json({ error: "username already exists" });
+      res.status(409).json({ error: "username already exists" });
+      return;
     }
 
     await db.query("INSERT INTO users(username, password) VALUES (?, ?)", [
       username,
       password,
     ]);
-    return res.status(201).json({ message: "user registered successfully" });
+     res.status(201).json({ users, message: "user registered successfully" });
+     return;
   } catch (error) {
     console.error("Error registering user:", error);
-    return res.status(500).json({ error: "internal server error" });
+     res.status(500).json({ error: "internal server error" });
+     return;
   }
 };

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "dev": "node --loader ts-node/esm --watch src/registerUser.ts",
+    "dev": "node --loader ts-node/esm --watch src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "ts-node": {

@@ -14,7 +14,7 @@ function Register() {
      });
      if (response.ok){
         const data =await response.json();
-        console.log(data)
+        console.log(data.users);
      }else{
       const errorData = await response.json();
 
