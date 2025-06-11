@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-
+import bcrypt from "bcrypt";
 import { db } from "../db/db.js";
 
 export const registerUser = async (
@@ -17,7 +17,7 @@ export const registerUser = async (
   }
 
   try {
-    const users= await db.query("SELECT * FROM users");
+    const [users]= await db.query("SELECT * FROM users");
     const [existingUser] = await db.query(
       "SELECT * FROM users WHERE username=?",
       [username]
@@ -26,10 +26,11 @@ export const registerUser = async (
       res.status(409).json({ error: "username already exists" });
       return;
     }
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     await db.query("INSERT INTO users(username, password) VALUES (?, ?)", [
       username,
-      password,
+      hashedPassword,
     ]);
      res.status(201).json({ users, message: "user registered successfully" });
      return;
