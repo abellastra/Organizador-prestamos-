@@ -1,10 +1,10 @@
 import Register from'./feactures/auth/Register'
+import AppRouters from './routes/AppRouters.tsx';
 function App() {
 
   return (
     <>
-     <h1>inicio d frontend</h1>
-     <Register />
+   <AppRouters/>
     </>
   )
 }
