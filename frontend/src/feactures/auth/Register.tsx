@@ -4,7 +4,7 @@ function Register() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  
+  const [error,setError]=useState('')
   async function handLeSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const response = await fetch("http://localhost:4000/register", {
@@ -18,11 +18,10 @@ function Register() {
       const data = await response.json();
       console.log(data.users);
       navigate("/login");
+      setError('')
     } else {
       const errorData = await response.json();
-
-      console.error("Error registering user:", errorData);
-      alert(errorData.error || "Error registering user");
+       setError(errorData.error)
     }
   }
   return (
@@ -45,6 +44,9 @@ function Register() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        { error &&(
+          <p>{error}</p>
+        )}
         <button type="submit">save user</button>
       </form>
     </div>

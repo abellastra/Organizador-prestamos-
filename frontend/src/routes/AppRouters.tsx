@@ -2,7 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
 import React, { useState } from "react";
 import Login from "../feactures/auth/login";
-import Dashboard from "../feactures/Dashboard";
+import Dashboard from "../feactures/auth/Dashboard";
 import Register from "../feactures/auth/Register";
 const useAuth = () => {
   const [users, setUsers] = useState(true);
