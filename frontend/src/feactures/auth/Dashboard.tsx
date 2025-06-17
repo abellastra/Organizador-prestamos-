@@ -1,6 +1,7 @@
 import { useEffect,useState } from "react";
-import axios from'axios'
 import { useNavigate } from "react-router-dom";
+import axios from'axios'
+
 const Dashboard=()=> {
 
 const [userData, setUserData] = useState(null);
@@ -20,11 +21,33 @@ navigate("/login")
   
 },[])
 
+const handleLogout = async()=>{
+  try{
+const response=await fetch("http://localhost:4000/logout",{
+  method:"POST",
+  credentials:"include"
+});
+if(response.ok){
+  const data= await response.json()
+  console.log(data)
+  navigate("/");
+
+}
+  }catch(error){
+    console.error("error logout")
+  }
+}
+
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <p>Welcome to the dashboard!</p>
-    </div>
+    <>
+      <button onClick={handleLogout}>Log out</button>
+      <div>
+        <h1>Organizador de prestamos </h1>
+        <button>crear un nuevo prestamo</button>
+        <button>prestamos activos </button>
+        <button>prestamos inactivos </button>
+      </div>
+    </>
   );
 }   
 export default Dashboard;
