@@ -4,6 +4,7 @@ import{ LoginDb} from "../controllers/loginDb"
 import  {verifyToken}  from "../middleware/verifiToken";
 import { dashboar } from "../controllers/dashboar";
 import { logout } from "../controllers/Logout";
+import{NewLoan} from"../controllers/NewLoan"
 const router = express.Router();
 
 router.post("/register", registerUser);
@@ -13,4 +14,6 @@ router.post("/login", LoginDb)
 router.get("/dashboard", verifyToken, dashboar);/* */
 
 router.post('/logout',logout)
+
+router.post('/newloan',NewLoan)
 export default router;

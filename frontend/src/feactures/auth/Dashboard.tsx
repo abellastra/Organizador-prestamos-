@@ -43,7 +43,7 @@ if(response.ok){
       <button onClick={handleLogout}>Log out</button>
       <div>
         <h1>Organizador de prestamos </h1>
-        <button>crear un nuevo prestamo</button>
+        <button onClick={()=>navigate("/newloan")}>crear un nuevo prestamo</button>
         <button>prestamos activos </button>
         <button>prestamos inactivos </button>
       </div>
