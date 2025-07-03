@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 
 import jwt, { JwtPayload } from "jsonwebtoken";
 import dotenv from "dotenv";
-
+console.log("verifiToken, verifitoken.ts");
 export const verifyToken = (
   req: Request,
   res: Response,

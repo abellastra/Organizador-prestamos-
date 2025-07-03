@@ -4,7 +4,7 @@ import {NavBar} from './feactures/auth/NavBar.tsx';
  import { useLocation } from 'react-router-dom';
 function App() {
 const location=useLocation();
-const hideMenuOnRoutes =['/dashboard','/newloan']
+const hideMenuOnRoutes = ["/dashboard", "/newloan", "/showloans"];
 
 const shouldHideMenu= hideMenuOnRoutes.includes(location.pathname)
   return (

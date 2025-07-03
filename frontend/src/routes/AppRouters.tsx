@@ -5,8 +5,9 @@ import Login from "../feactures/auth/login";
 import Dashboard from "../feactures/auth/Dashboard";
 import Register from "../feactures/auth/Register";
 import NewLoan from "../feactures/auth/NewLoan";
+import ShowLoan from "../feactures/auth/showLoan";
 const useAuth = () => {
-  const [users, setUsers] = useState(true);
+  const [users, setUsers] = useState(true);//hacer algo funcionalllllllll
   const user = users;
   return user;
 };
@@ -20,9 +21,9 @@ function AppRouters() {
     <Routes>
       <Route element={<ProtectedRoute />}>
         <Route path="/newloan" element={<NewLoan />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Route>
-      <Route path="/dashboard" element={<Dashboard />} />
-
+      <Route path="/showloans" element={<ShowLoan />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
     </Routes>

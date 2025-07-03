@@ -4,15 +4,14 @@ import { db } from "../db/db";
 
 export const registerUser = async (req: Request, res: Response) => {
   const { username, password } = req.body;
-  console.log(req.body);
-  console.log("registerUser");
+
   if (!username || !password) {
     res.status(400).json({ error: "username and password are required" });
     return;
   }
 
   try {
-    const [users] = await db.query("SELECT * FROM users");
+    const [users] = await db.query("SELECT * FROM users ");
     const [existingUser] = await db.query(
       "SELECT * FROM users WHERE username=?",
       [username]
@@ -21,7 +20,7 @@ export const registerUser = async (req: Request, res: Response) => {
       res.status(409).json({ error: "username already exists" });
       return;
     }
-    
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     await db.query("INSERT INTO users(username, password) VALUES (?, ?)", [

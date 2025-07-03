@@ -33,7 +33,7 @@ export const LoginDb = async (req: Request, res: Response) => {
     const token = jwt.sign(
       { id:user.id, username:user.username },
       process.env.JWT_SECRET!,
-      { expiresIn: "1h" }
+      { expiresIn: "1d" }
     )
     res.cookie("token",token,{
         httpOnly:true,

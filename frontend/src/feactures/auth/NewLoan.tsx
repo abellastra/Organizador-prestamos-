@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function newLoan() {
@@ -7,11 +7,24 @@ function newLoan() {
   const [amuontOfMoney, setAmuontOfMoney] = useState<any>(null);
   const [interest, setInterest] = useState<any>(null);
   const [quotas, setQuotas] = useState<any>(null);
+  const [mensaje,setMensaje]=useState<any>('')
 
     const navigate =useNavigate()
 
+    useEffect(()=>{
+      if(mensaje=='Loan saved successfully'){
+        setBorrower_name("");
+        setDate("");
+        setAmuontOfMoney("");
+        setInterest("");
+        setQuotas("");
+        console.log("HOLA");
+
+      }
+
+    },[mensaje])
+
   async function sendRequesLoan(e: React.FormEvent<HTMLFormElement>) {
-    console.log("newloan");
     e.preventDefault();
 
     const response = await fetch("http://localhost:4000/newloan", {
@@ -28,14 +41,20 @@ function newLoan() {
         quotas,
       }),
     });
-    try {
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
+      if (!response.ok){
+        setMensaje('data incomplet')
       }
-    } catch (error) {
-      console.error("error al crear un prestamo", error);
-    }
+        try {
+          if (response.ok) {
+            const data = await response.json();
+         
+            if (data) {
+              setMensaje("Loan saved successfully");
+            }
+          }
+        } catch (error) {
+          console.error("error al crear un prestamo", error);
+        }
   }
 
   return (
@@ -48,14 +67,20 @@ function newLoan() {
         <input
           type="text"
           id="name"
+          value={
+            borrower_name
+          }
           onChange={(e) => setBorrower_name(e.target.value)}
         />
 
         <label htmlFor="date">Date</label>
-        <input type="date" onChange={(e) => setDate(e.target.value)} />
+        <input type="date" 
+        value={date}
+        onChange={(e)=> setDate(e.target.value)} />
 
         <label htmlFor="amount_of_money">Amount of money</label>
         <input
+        value={amuontOfMoney}
           type="number"
           id="amount_of_money"
           onChange={(e) => setAmuontOfMoney(e.target.value)}
@@ -71,10 +96,12 @@ function newLoan() {
 
         <label htmlFor="quotas">Monthly installaments</label>
         <input
+          value={quotas}
           type="number"
           id="quotas"
           onChange={(e) => setQuotas(e.target.value)}
         />
+        {mensaje && (<p>{mensaje}</p>)}
         <button type="submit">Save loan </button>
       </form>
     </>

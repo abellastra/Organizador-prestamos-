@@ -9,14 +9,6 @@ export const NewLoan = async (req: Request, res: Response) => {
   const token = req.cookies.token;
   const decode = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
   const user_id = decode.id;
-  console.log(user_id);
-  console.log(typeof
-    borrower_name,
-    amuontOfMoney,
-    interest,
-    quotas,
-    "loan"
-  );
   if (!user_id || !borrower_name || !date|| !amuontOfMoney || !interest || !quotas) {
     res.status(400).json({ error: "data incomplete" });
   }
