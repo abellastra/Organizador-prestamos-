@@ -45,7 +45,7 @@ const Dashboard = () => {
           crear un nuevo prestamo
         </button>
         <button onClick={()=>navigate("/showloans")}>prestamos activos </button>
-        <button>prestamos inactivos </button>
+        <button onClick={()=> navigate("/inactiveLoans")}>prestamos inactivos </button>
       </div>
     </>
   );

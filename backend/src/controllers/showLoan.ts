@@ -3,7 +3,7 @@ import { Request,Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 
 export const showLoan= async ( req:Request ,res:Response)=>{
-    const token = req.cookies.token;
+      const token = req.cookies.token;
       const decode = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
       const user_id = decode.id;
     
@@ -13,7 +13,6 @@ export const showLoan= async ( req:Request ,res:Response)=>{
     }else{
         console.log(user_id)
     }
-
     try {   
         
         const [loans]= await db.query('SELECT * FROM data_loans WHERE user_id = ? AND status="ACTIVE" ', [user_id]);

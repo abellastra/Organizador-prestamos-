@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 function ShowLoan() {
   const [loans, setLoans] = useState<any>([]);
@@ -30,8 +30,9 @@ function ShowLoan() {
 
   return (
     <>
-    <button onClick={()=> navigate('/dashboard')}> Regresar </button>
+      <button onClick={() => navigate("/dashboard")}> Regresar </button>
       <h1> Loas active</h1>
+
       {/* {loans &&
         loans.map((loan) => (
           <div key={loan.id}>
@@ -42,34 +43,37 @@ function ShowLoan() {
             <p>Cuotas: {loan.quotas}</p>
           </div>
         ))} */}
-       
-         <table>
-          <thead>
-            <th> Name </th>
-            <th> Date </th>
-            <th> Amount </th>
-            <th> Interest </th>
-            <th> Quotas </th>
-            <th>status</th>
-          </thead>
-          <tbody>
+
+      <table>
+        <thead>
+          <th> Name </th>
+          <th> Date </th>
+          <th> Amount </th>
+          <th> Interest </th>
+          <th> Quotas </th>
+        </thead>
+        <tbody>
           {loans &&
-        loans.map((loan) => (
+            loans.map((loan) => (
+              <React.Fragment key={loans.user_id}>
+                <tr key={loan.id}>
+                  <td colSpan={5}>
+                    <td>{loan.borrower_name}</td>
+                    <td>
+                      {new Date(loan.created_at).toLocaleDateString("es-AR")}
+                    </td>
+                    <td>{loan.loan_amount}</td>
+                    <td>{loan.interest}</td>
+                    <td>{loan.quotas}</td>
+                  </td>
+                </tr>
 
-          <tr key={loan.id}>
-            <td>{loan.borrower_name}</td>
-              <td>{new Date(loan.created_at).toLocaleDateString("es-AR")}</td>
-            <td>{loan.loan_amount}</td>
-            <td>{loan.interest}</td>
-            <td>{loan.quotas}</td>
-            <td>{loan.status}</td>
-          </tr>
-        ))}
-
-          </tbody>
-         </table>
-        
-           </>
+                {<tr><h1>holas</h1></tr>}
+              </React.Fragment>
+            ))}
+        </tbody>
+      </table>
+    </>
   );
 
 }
