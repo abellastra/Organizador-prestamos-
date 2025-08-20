@@ -11,27 +11,17 @@ export const registerUser = async (req: Request, res: Response) => {
   }
 
   try {
-    const [users] = await db.query("SELECT * FROM users ");
-    const [existingUser] = await db.query(
-      "SELECT * FROM users WHERE username=?",
-      [username]
-    );
-    if ((existingUser as any[]).length > 0) {
-      res.status(409).json({ error: "username already exists" });
-      return;
-    }
-
     const hashedPassword = await bcrypt.hash(password, 10);
 
     await db.query("INSERT INTO users(username, password) VALUES (?, ?)", [
       username,
       hashedPassword,
     ]);
-    res.status(201).json({ users, message: "user registered successfully" });
+    res.status(201).json({ message: "user registered successfully" });
     return;
   } catch (error) {
     console.error("Error registering user:", error);
-    res.status(500).json({ error: "internal server error" });
+    res.status(500).json({ error: "user name exist" });
     return;
   }
 };

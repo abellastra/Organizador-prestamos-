@@ -68,7 +68,7 @@ function ShowLoan() {
                   </td>
                 </tr>
 
-                {<tr><h1>holas</h1></tr>}
+                {/* {<tr><h1>holas</h1></tr>} */}
               </React.Fragment>
             ))}
         </tbody>

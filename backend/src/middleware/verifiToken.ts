@@ -9,14 +9,21 @@ export const verifyToken = (
   next: NextFunction
 ) => {
   const token = req.cookies.token;
+  console.log(token)
   if (!token) {
     res.status(401).json({ error: "acces denied, token not send" });
     return;
   }
   try {
-    const decode = jwt.verify(token, process.env.JWT_SECRET!)as JwtPayload &{id:number;username:string;}
-    // console.log(decode.id,'DECODE')
-    // req.user = decode 
+    const decode = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload & {
+      id: number;
+      username: string;
+    };
+    //@ts-ignore
+    req.user = decode;                
+
+     console.log(decode.id,'DECODE')
+
     next();
   } catch (error) {
     res.status(403).json({ error: "token is expired or invaded" });

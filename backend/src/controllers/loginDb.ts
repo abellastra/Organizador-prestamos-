@@ -35,6 +35,7 @@ export const LoginDb = async (req: Request, res: Response) => {
       process.env.JWT_SECRET!,
       { expiresIn: "1d" }
     )
+    console.log(token, "token loginDb");
     res.cookie("token",token,{
         httpOnly:true,
         secure:false,

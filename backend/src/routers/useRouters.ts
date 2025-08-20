@@ -9,17 +9,13 @@ import { showLoan } from "../controllers/showLoan";
 import { InactiveLoans } from "../controllers/InactiveLoans";
 const router = express.Router();
 
-router.post("/register", registerUser);
-
-router.post("/login", LoginDb)
-
-router.get("/dashboard", verifyToken, dashboar);
+router.get("/dashboard", dashboar);
 
 router.post('/logout',logout)
 
 router.post('/newloan',NewLoan)
 
-router.get("/showloans",verifyToken, showLoan);
+router.get("/showloans", showLoan);
 
 router.get("/inactiveLoans",InactiveLoans) ;
 export default router;

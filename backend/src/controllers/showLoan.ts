@@ -3,17 +3,14 @@ import { Request,Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 
 export const showLoan= async ( req:Request ,res:Response)=>{
-      const token = req.cookies.token;
-      const decode = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
-      const user_id = decode.id;
-    
-    if (!token) {
-        res.status(401).json({ error: "Unauthorized" });
+    //@ts-ignore
+     const user_id = req?.user?.id
+     console.log(user_id, "user_id showLoan");
+    if (!user_id) {
+        res.status(401).json({ error: "acces denied, token not send" });
         return;
-    }else{
-        console.log(user_id)
     }
-    try {   
+     try {   
         
         const [loans]= await db.query('SELECT * FROM data_loans WHERE user_id = ? AND status="ACTIVE" ', [user_id]);
         res.status(200).json({loans});

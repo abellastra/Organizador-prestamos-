@@ -4,6 +4,7 @@ import axios from "axios";
 
 const Dashboard = () => {
   const [userData, setUserData] = useState(null);
+  console.log(userData)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,7 +20,6 @@ const Dashboard = () => {
         navigate("/login");
       });
   }, []);
-
   const handleLogout = async () => {
     try {
       const response = await fetch("http://localhost:4000/logout", {
@@ -41,6 +41,7 @@ const Dashboard = () => {
       <button onClick={handleLogout}>Log out</button>
       <div>
         <h1>Organizador de prestamos </h1>
+        <h2>Bienvenido {userData}</h2>
         <button onClick={() => navigate("/newloan")}>
           crear un nuevo prestamo
         </button>
