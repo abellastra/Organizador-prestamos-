@@ -40,13 +40,30 @@ const Dashboard = () => {
     <>
       <button onClick={handleLogout}>Log out</button>
       <div>
-        <h1>Organizador de prestamos </h1>
-        <h2>Bienvenido {userData}</h2>
-        <button onClick={() => navigate("/newloan")}>
+        <h1 className="text-5xl	 font-semibold text-white  mb4">
+          Organizador de prestamos{" "}
+        </h1>
+        <h2 className=" text-3xl font-medium text-write ">
+          Bienvenido {userData}
+        </h2>
+        <button
+          className="bg-[rgb(125,125,125)] text-white px-10 py-4 rounded hover:bg-blue-900 "
+          onClick={() => navigate("/newloan")}
+        >
           crear un nuevo prestamo
         </button>
-        <button onClick={()=>navigate("/showloans")}>prestamos activos </button>
-        <button onClick={()=> navigate("/inactiveLoans")}>prestamos inactivos </button>
+        <button
+          className="bg-[rgb(125,125,125)] text-white px-10 py-4 rounded hover:bg-blue-900 "
+          onClick={() => navigate("/showloans")}
+        >
+          prestamos activos{" "}
+        </button>
+        <button
+          className="bg-[rgb(125,125,125)] text-white px-10 py-4 rounded hover:bg-blue-900 "
+          onClick={() => navigate("/inactiveLoans")}
+        >
+          prestamos inactivos{" "}
+        </button>
       </div>
     </>
   );

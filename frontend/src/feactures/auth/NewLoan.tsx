@@ -17,9 +17,7 @@ function newLoan() {
         setDate("");
         setAmuontOfMoney("");
         setInterest("");
-        setQuotas("");
-        console.log("HOLA");
-
+        setQuotas("")
       }
 
     },[mensaje])

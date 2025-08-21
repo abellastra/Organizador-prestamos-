@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+           type loans = {
+             id: number;
+             borrower_name: String;
+             created_at: string;
+             loan_amount: number;
+             interest: number;
+             quotas:number
+           };
 function inactiveLoans() {
   const navigate = useNavigate();
-  const [loans, setLoans] = useState<any>([]);
+  const [loans, setLoans] = useState<loans[]>([]);
   useEffect(() => {
     async function fetchInactiveLoans() {
       const respose = await fetch("http://localhost:4000/inactiveLoans", {
@@ -47,6 +55,7 @@ function inactiveLoans() {
           </thead>
           <tbody>
             {loans.map((loan) => (
+   
               <tr key={loan.id}>
                 <td>{loan.borrower_name}</td>
                 <td>{new Date(loan.created_at).toLocaleDateString("es-AR")}</td>

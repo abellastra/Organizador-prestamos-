@@ -25,8 +25,8 @@ function Register() {
     }
   }
   return (
-    <div>
-      <h1>Register</h1>
+    <div className="h-screen flex text-white| flex-col justify-center  text-center ">
+      <h1 className="text-5xl	 font-semibold  mb-20">Register</h1>
       <form onSubmit={handLeSubmit}>
         <div>
           <label htmlFor="username">enter username</label>
@@ -44,9 +44,7 @@ function Register() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        { error &&(
-          <p>{error}</p>
-        )}
+        {error && <p>{error}</p>}
         <button type="submit">save user</button>
       </form>
     </div>

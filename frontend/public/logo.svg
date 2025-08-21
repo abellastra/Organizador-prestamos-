@@ -1,0 +1,10 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo azul con bordes redondeados -->
+  <rect x="25" y="25" width="150" height="150" rx="30" fill="#2D70B7"/>
+  
+  <!-- Símbolo de dólar -->
+  <text x="100" y="115" font-size="80" font-family="Arial, sans-serif" fill="white" text-anchor="middle">$</text>
+  
+  <!-- Flecha verde ascendente -->
+  <path d="M50 130 C80 90, 120 70, 150 50 L140 40 C110 60, 80 80, 50 120 Z" fill="#3CB371"/>
+</svg>

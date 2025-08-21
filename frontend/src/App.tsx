@@ -1,15 +1,13 @@
-import Register from'./feactures/auth/Register'
 import AppRouters from './routes/AppRouters.tsx';
-import {NavBar} from './feactures/auth/NavBar.tsx';
- import { useLocation } from 'react-router-dom';
+//  import { useLocation } from 'react-router-dom';
 function App() {
-const location=useLocation();
-const hideMenuOnRoutes = ["/dashboard", "/newloan", "/showloans", "/inactiveLoans"];
+// const location=useLocation();
+// const hideMenuOnRoutes = ["/dashboard", "/newloan", "/showloans", "/inactiveLoans"];
 
-const shouldHideMenu= hideMenuOnRoutes.includes(location.pathname)
+// const shouldHideMenu= hideMenuOnRoutes.includes(location.pathname)
   return (
     <>
-      {!shouldHideMenu && <NavBar />}
+    {/* {!shouldHideMenu && <NavBar />} */}
       <AppRouters />
     </>
   );
