@@ -20,29 +20,28 @@ export const LoginDb = async (req: Request, res: Response) => {
     );
     const user = rows[0];
     if (!user) {
-        console.log('user is not')
+      console.log("user is not");
       res.status(400).json({ error: "user or passwor is incorrect " });
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-        console.log("user is not match");
+      console.log("user is not match");
 
       res.status(400).json({ error: "user or password is incorrect" });
       return;
     }
     const token = jwt.sign(
-      { id:user.id, username:user.username },
+      { id: user.id, username: user.username },
       process.env.JWT_SECRET!,
       { expiresIn: "1d" }
-    )
+    );
     console.log(token, "token loginDb");
-    res.cookie("token",token,{
-        httpOnly:true,
-        secure:false,
-        sameSite:"strict",
-        maxAge: 60 * 60 * 1000, // 1 hora
-
-    })
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "strict",
+      maxAge: 60 * 60 * 1000, // 1 hora
+    });
     res.status(200).json({ loggeIn: true });
     return;
   } catch (error) {

@@ -2,8 +2,7 @@ import express from "express";
 import cors from "cors";
 import userRouter from "./routers/useRouters";
 
-
-import cookieParser from'cookie-parser'
+import cookieParser from "cookie-parser";
 const router = express.Router();
 import { registerUser } from "./controllers/registerUser";
 import { LoginDb } from "./controllers/loginDb";
@@ -13,10 +12,10 @@ const app = express();
 const port = 4000;
 
 /**/
-app.use(cookieParser())
+app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5174",
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
@@ -27,11 +26,10 @@ app.get("/", (req, res) => {
 });
 app.post("/register", registerUser);
 
-app.post("/login", LoginDb)
+app.post("/login", LoginDb);
 app.use(verifyToken);
 
 app.use("/", userRouter);
-
 
 app.listen(port, () => {
   console.log(`server is functioning on poth http://localhost:${port}/`);

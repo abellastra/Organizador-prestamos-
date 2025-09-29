@@ -1,5 +1,5 @@
-import mysql from 'mysql2/promise';
-import dotenv from 'dotenv';
+import mysql from "mysql2/promise";
+import dotenv from "dotenv";
 dotenv.config();
 
 export const db = mysql.createPool({
@@ -7,5 +7,5 @@ export const db = mysql.createPool({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  port: Number(process.env.DB_PORT||3306), // Default MySQL port is 3306
+  port: Number(process.env.DB_PORT || 3306), // Default MySQL port is 3306
 });

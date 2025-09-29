@@ -2,31 +2,30 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 function ShowLoan() {
   const [loans, setLoans] = useState<any>([]);
-  const navigate = useNavigate()
-    useEffect(() => {
-        async function loans() {
-          const response = await fetch("http://localhost:4000/showloans", {
-            method: "GET",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-          //   const token = req.cookies.token; // <-- obtienes el JWT de la cookie
-          try {
-            if (response.ok) {
-              const data = await response.json();
-              setLoans(data.loans);
-            }
-          } catch (error) {
-            console.error("error show loans");
-          }
-      
-      };
-   
-      loans()
-    },[])
-    console.log(loans);
+  const navigate = useNavigate();
+  useEffect(() => {
+    async function loans() {
+      const response = await fetch("http://localhost:4000/showloans", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      //   const token = req.cookies.token; // <-- obtienes el JWT de la cookie
+      try {
+        if (response.ok) {
+          const data = await response.json();
+          setLoans(data.loans);
+        }
+      } catch (error) {
+        console.error("error show loans");
+      }
+    }
+
+    loans();
+  }, []);
+  console.log(loans);
 
   return (
     <>
@@ -75,6 +74,5 @@ function ShowLoan() {
       </table>
     </>
   );
-
 }
 export default ShowLoan;

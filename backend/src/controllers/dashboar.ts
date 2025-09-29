@@ -7,11 +7,11 @@ export const dashboar = async (req: Request, res: Response) => {
   const user = req.user as { id: number; username: string };
 
   //@ts-ignore
-  const user_id = user 
+  const user_id = user;
   if (user_id) {
-    const user=user_id.username
+    const user = user_id.username;
     console.log(user, "user_id dashboar");
-   
-    res.status(200).json( user );
+
+    res.status(200).json(user);
   }
 };

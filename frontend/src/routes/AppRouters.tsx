@@ -9,7 +9,7 @@ import ShowLoan from "../feactures/auth/showLoan";
 import { NavBar } from "../feactures/auth/NavBar";
 import InactiveLoans from "../feactures/auth/inactiveLoans";
 const useAuth = () => {
-  const [users, setUsers] = useState(true);//hacer algo funcionalllllllll
+  const [users, setUsers] = useState(true); //hacer algo funcionalllllllll
   const user = users;
   return user;
 };
@@ -22,7 +22,7 @@ function AppRouters() {
   return (
     <Routes>
       <Route element={<ProtectedRoute />}>
-        <Route path="/" element={<NavBar />}/>
+        <Route path="/" element={<NavBar />} />
         <Route path="/newloan" element={<NewLoan />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/showloans" element={<ShowLoan />} />

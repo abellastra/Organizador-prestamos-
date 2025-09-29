@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError]= useState('')
+  const [error, setError] = useState("");
   async function handLeSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const response = await fetch("http://localhost:4000/login", {
@@ -13,19 +13,19 @@ function Login() {
       headers: {
         "Content-Type": "application/json",
       },
-      credentials:"include",
+      credentials: "include",
       body: JSON.stringify({ username, password }),
     });
     if (response.ok) {
       const data = await response.json();
-      console.log(data)
-      navigate("/dashboard")
-      setError('')
+      console.log(data);
+      navigate("/dashboard");
+      setError("");
     } else {
       const errorData = await response.json();
-      setError(errorData.error)
-       console.log(errorData)
-        }
+      setError(errorData.error);
+      console.log(errorData);
+    }
   }
   return (
     <div>
@@ -47,9 +47,7 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        {error &&(
-          <p>{error}</p>
-        )}
+        {error && <p>{error}</p>}
         <button type="submit">enter</button>
       </form>
     </div>

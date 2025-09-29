@@ -4,7 +4,7 @@ import axios from "axios";
 
 const Dashboard = () => {
   const [userData, setUserData] = useState(null);
-  console.log(userData)
+  console.log(userData);
   const navigate = useNavigate();
 
   useEffect(() => {
